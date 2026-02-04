@@ -10,12 +10,11 @@ class HealingItem:
         self.healing_amount = healing_amount
 
 def describe(entity):
-    # creates string description of entity
     return (f"{entity.name}\nHealth: {entity.health}\nAttack: {entity.attack}")
 
-def attack(defender, attacker):
-    defender.health -= attacker.attack
-    return(f"{attacker.name} attacks {defender.name} for {attacker.attack} damage!")
+def damage(defender, attack):
+    defender.health -= attack.attack
+    return(f"{attack.name} deals {attack.attack} damage to {defender.name}!")
 
 def heal(entity, healing_item):
     entity.health += healing_item.healing_amount
@@ -32,11 +31,20 @@ def main():
     boss_description = describe(boss)
     print(boss_description)
     
-    print(attack(player, boss))
+    # renamed function in case attack comes from objects (falling things)
+    print(damage(player, boss))
     
     healing_potion = HealingItem("Healing Potion", 50)
     print(heal(player, healing_potion))
-
+    
+    # checks if player is healed or not (they were)
+    print(describe(player))
+    
+    falling_boulder = Entity("Falling Boulder", 0, 1000)
+    print(damage(player, falling_boulder))
+    
+    # add defeated / fainted check soon
+    
 if __name__ == "__main__":
     main()
 
