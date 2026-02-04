@@ -1,3 +1,5 @@
+HEALING_POTION = 50
+
 class Entity:
     def __init__ (self, name, health, attack):
         self.name = name
@@ -10,7 +12,11 @@ def describe(entity):
 
 def attack(defender, attacker):
     defender.health -= attacker.attack
-    print(f"{attacker.name} attacks {defender.name} for {attacker.attack} damage!")
+    return(f"{attacker.name} attacks {defender.name} for {attacker.attack} damage!")
+
+def heal(entity, amount):
+    entity.health += amount
+    return(f"{entity.name} heals for {amount} HP!")
 
 def main():
     # create entities
@@ -23,7 +29,8 @@ def main():
     boss_description = describe(boss)
     print(boss_description)
     
-    attack(player, boss)    
+    print(attack(player, boss))
+    print(heal(player, HEALING_POTION))
 
 if __name__ == "__main__":
     main()
