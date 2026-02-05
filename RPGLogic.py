@@ -36,20 +36,31 @@ def main():
     print(boss_description)
     
     # renamed function in case attack comes from objects (falling things)
-    print(damage(player, boss))
+    attack_message = damage(player, boss)
+    print(attack_message)
     
     healing_potion = HealingItem("Healing Potion", 50)
-    print(heal(player, healing_potion))
+    heal_message = heal(player, healing_potion)
+    print(heal_message)
     
     # checks if player is healed or not (they were)
-    print(describe(player))
+    player_description = describe(player)
+    print(player_description)
     
     falling_boulder = Entity("Falling Boulder", 0, 1000)
-    print(damage(player, falling_boulder))
+    attack_message = damage(player, falling_boulder)
+    print(attack_message)
     
-    print(describe(player)) # should health go into the negatives or stop at 0?
-    print(checkIfDefeated(player))
-    print(checkIfDefeated(boss)) # if they are not defeated, nothing should print, so need to fix that
+    player_description = describe(player) # should health go into the negatives or stop at 0? (Yes!)
+    print(player_description)
+    
+    # check for defeated entities
+    isPlayerDefeated = checkIfDefeated(player)
+    isBossDefeated = checkIfDefeated(boss)
+    if isPlayerDefeated:
+        print(isPlayerDefeated)
+    if isBossDefeated:
+        print(isBossDefeated)
     
     # add defeated / fainted check soon
     
