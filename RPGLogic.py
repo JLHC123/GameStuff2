@@ -20,6 +20,10 @@ def heal(entity, healing_item):
     entity.health += healing_item.healing_amount
     return(f"{entity.name} uses {healing_item.name} and recovers {healing_item.healing_amount} HP!")
 
+def checkIfDefeated(entity):
+    if entity.health <= 0:
+        return f"{entity.name} has fallen!"
+
 def main():
     # create entities
     player = Entity("Player", 100, 10)    
@@ -44,6 +48,8 @@ def main():
     print(damage(player, falling_boulder))
     
     print(describe(player)) # should health go into the negatives or stop at 0?
+    print(checkIfDefeated(player))
+    print(checkIfDefeated(boss)) # if they are not defeated, nothing should print, so need to fix that
     
     # add defeated / fainted check soon
     
