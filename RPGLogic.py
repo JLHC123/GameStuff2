@@ -12,9 +12,9 @@ class HealingItem:
 def describe(entity):
     return (f"{entity.name}\nHealth: {entity.health}\nAttack: {entity.attack}")
 
-def damage(defender, attack):
-    defender.health -= attack.attack
-    return(f"{attack.name} deals {attack.attack} damage to {defender.name}!")
+def damage(defender, attacker):
+    defender.health -= attacker.attack # rename back to attacker because attack.attack just looks confusing
+    return(f"{attacker.name} deals {attacker.attack} damage to {defender.name}!")
 
 def heal(entity, healing_item):
     entity.health += healing_item.healing_amount
@@ -42,6 +42,8 @@ def main():
     
     falling_boulder = Entity("Falling Boulder", 0, 1000)
     print(damage(player, falling_boulder))
+    
+    print(describe(player)) # should health go into the negatives or stop at 0?
     
     # add defeated / fainted check soon
     
